@@ -1,0 +1,18 @@
+#preloader {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(255, 255, 255, 0.9);
+    z-index: 9999;
+  }
+  // .black_wall {
+  //   /* Your styles for the black wall */
+  // }
+  // .loader {
+  //   /* Your styles for the loader animation */
+  // }
+  .off {
+    display: none;
+  }

@@ -12,14 +12,14 @@ export class ScriptService {
     ScriptStore.forEach((script: any) => {
       this.scripts[script.name] = {
         loaded: false,
-        src: script.src
+        src: script.src,
       };
     });
 
     StyleStore.forEach((style: any) => {
       this.styles[style.name] = {
         loaded: false,
-        href: style.href
+        href: style.href,
       };
     });
   }
@@ -46,7 +46,8 @@ export class ScriptService {
           this.scripts[name].loaded = true;
           resolve({ script: name, loaded: true, status: 'Loaded' });
         };
-        script.onerror = (error: any) => resolve({ script: name, loaded: false, status: 'Load Failed' });
+        script.onerror = (error: any) =>
+          resolve({ script: name, loaded: false, status: 'Load Failed' });
         document.body.appendChild(script);
       }
     });
