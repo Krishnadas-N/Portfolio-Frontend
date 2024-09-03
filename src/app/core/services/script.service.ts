@@ -1,4 +1,4 @@
-import { Injectable } from '@angular/core';
+import { Injectable, Renderer2 } from '@angular/core';
 import { ScriptStore, StyleStore } from '../models/script.store';
 
 declare var document: any;
@@ -8,7 +8,7 @@ export class ScriptService {
   private scripts: any = {};
   private styles: any = {};
 
-  constructor() {
+  constructor(private renderer: Renderer2) {
     ScriptStore.forEach((script: any) => {
       this.scripts[script.name] = {
         loaded: false,
@@ -39,16 +39,18 @@ export class ScriptService {
       if (this.scripts[name].loaded) {
         resolve({ script: name, loaded: true, status: 'Already Loaded' });
       } else {
-        const script = document.createElement('script');
+        const script = this.renderer.createElement('script');
         script.type = 'text/javascript';
         script.src = this.scripts[name].src;
+        script.async = true;
+        script.defer = true;
         script.onload = () => {
           this.scripts[name].loaded = true;
           resolve({ script: name, loaded: true, status: 'Loaded' });
         };
         script.onerror = (error: any) =>
-          resolve({ script: name, loaded: false, status: 'Load Failed' });
-        document.body.appendChild(script);
+          reject({ script: name, loaded: false, status: 'Load Failed' });
+        this.renderer.appendChild(document.body, script);
       }
     });
   }
@@ -57,10 +59,10 @@ export class ScriptService {
     if (this.styles[name].loaded) {
       return;
     }
-    const link = document.createElement('link');
+    const link = this.renderer.createElement('link');
     link.rel = 'stylesheet';
     link.href = this.styles[name].href;
-    document.head.appendChild(link);
+    this.renderer.appendChild(document.head, link);
     this.styles[name].loaded = true;
   }
 }
