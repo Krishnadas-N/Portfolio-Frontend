@@ -1,61 +1,51 @@
-<!-- About -->
 <section class="about-area">
   <div class="container">
     <div class="row">
+      <!-- About me section -->
       <div class="col-md-6" data-aos="zoom-in">
         <div class="about-me-box shadow-box">
-          <a class="overlay-link" href="about.html"></a>
+          <a [routerLink]="['/about']" class="overlay-link"></a>
           <img src="assets/images/bg1.png" alt="BG" class="bg-img" />
           <div class="img-box">
             <img src="assets/images/me.png" alt="About Me" />
           </div>
           <div class="infos">
-            <h4>A WEB DESIGNER</h4>
-            <h1>David Henderson.</h1>
-            <p>I am a Web Designer based in san francisco.</p>
-            <a href="#" class="about-btn">
+            <h4>{{ userData.role }}</h4>
+            <h1>{{ userData.name }}</h1>
+            <p>I am a Web Designer based in {{ userData.location }}.</p>
+            <a routerLink="/about" class="about-btn">
               <img src="assets/images/icon.svg" alt="Button" />
             </a>
           </div>
         </div>
       </div>
 
+      <!-- Showcase credentials -->
       <div class="col-md-6">
         <div class="about-credentials-wrap">
           <div data-aos="zoom-in">
             <div class="banner shadow-box">
               <div class="marquee">
                 <div>
-                  <span
-                    >LATEST WORK AND <b>FEATURED</b>
-                    <img src="assets/images/star1.svg" alt="Star" /> LATEST WORK
-                    AND <b>FEATURED</b>
-                    <img src="assets/images/star1.svg" alt="Star" /> LATEST WORK
-                    AND <b>FEATURED</b>
-                    <img src="assets/images/star1.svg" alt="Star" /> LATEST WORK
-                    AND <b>FEATURED</b> LATEST WORK AND
-                    <img src="assets/images/star1.svg" alt="Star" /> LATEST WORK
-                    AND <b>FEATURED</b> LATEST WORK AND
-                    <img src="assets/images/star1.svg" alt="Star"
-                  /></span>
+                  <span> LATEST WORK AND <b>FEATURED</b> ...</span>
                 </div>
               </div>
             </div>
           </div>
 
+          <!-- Credentials and Projects -->
           <div class="gx-row d-flex gap-24">
             <div data-aos="zoom-in">
               <div class="about-crenditials-box info-box shadow-box h-full">
-                <a class="overlay-link" href="credentials.html"></a>
+                <a [routerLink]="['/credentials']" class="overlay-link"></a>
                 <img src="assets/images/bg1.png" alt="BG" class="bg-img" />
                 <img src="assets/images/sign.png" alt="Sign" />
                 <div class="d-flex align-items-center justify-content-between">
                   <div class="infos">
-                    <h4>more about me</h4>
+                    <h4>More about me</h4>
                     <h1>Credentials</h1>
                   </div>
-
-                  <a href="credentials.html" class="about-btn">
+                  <a [routerLink]="['/credentials']" class="about-btn">
                     <img src="assets/images/icon.svg" alt="Button" />
                   </a>
                 </div>
@@ -64,7 +54,7 @@
 
             <div data-aos="zoom-in">
               <div class="about-project-box info-box shadow-box h-full">
-                <a class="overlay-link" href="works.html"></a>
+                <a [routerLink]="['/projects']" class="overlay-link"></a>
                 <img src="assets/images/bg1.png" alt="BG" class="bg-img" />
                 <img src="assets/images/my-works.png" alt="My Works" />
                 <div class="d-flex align-items-center justify-content-between">
@@ -72,8 +62,7 @@
                     <h4>SHOWCASE</h4>
                     <h1>Projects</h1>
                   </div>
-
-                  <a href="#" class="about-btn">
+                  <a [routerLink]="['/projects']" class="about-btn">
                     <img src="assets/images/icon.svg" alt="Button" />
                   </a>
                 </div>
@@ -110,10 +99,12 @@
               <a href="service.html" class="overlay-link"></a>
               <img src="assets/images/bg1.png" alt="BG" class="bg-img" />
               <div class="icon-boxes">
-                <i class="iconoir-camera"></i>
-                <i class="iconoir-design-pencil"></i>
-                <i class="iconoir-color-filter"></i>
-                <i class="iconoir-dev-mode-phone"></i>
+               <!-- FontAwesome Icons -->
+              <i class="fas fa-camera"></i>
+              <i class="fas fa-pencil-alt"></i>
+              <i class="fas fa-fill-drip"></i>
+              <i class="fas fa-mobile-alt"></i>
+
               </div>
               <div class="d-flex align-items-center justify-content-between">
                 <div class="infos">
@@ -159,33 +150,32 @@
       <div class="col-md-6" data-aos="zoom-in">
         <div class="about-client-box info-box shadow-box">
           <img src="assets/images/bg1.png" alt="BG" class="bg-img" />
-          <div
-            class="clients d-flex align-items-start gap-24 justify-content-center"
-          >
+          <div class="clients d-flex align-items-start gap-24 justify-content-center">
             <div class="client-item">
-              <h1>07</h1>
+              <h1>{{ userData.experienceYears }}</h1>
               <p>Years <br />Experience</p>
             </div>
 
             <div class="client-item">
-              <h1>+125</h1>
-              <p>CLIENTS <br />WORLDWIDE</p>
+              <h1>{{ userData.clients }}</h1>
+              <p>Clients <br />Worldwide</p>
             </div>
 
             <div class="client-item">
-              <h1>+210</h1>
+              <h1>{{ userData.projects }}</h1>
               <p>Total <br />Projects</p>
             </div>
           </div>
         </div>
       </div>
+
       <div class="col-md-6" data-aos="zoom-in">
         <div class="about-contact-box info-box shadow-box">
-          <a class="overlay-link" href="contact.html"></a>
+          <a [routerLink]="['/contact']" class="overlay-link"></a>
           <img src="assets/images/bg1.png" alt="BG" class="bg-img" />
           <img src="assets/images/icon2.png" alt="Icon" class="star-icon" />
           <h1>Let's <br />work <span>together.</span></h1>
-          <a href="#" class="about-btn">
+          <a [routerLink]="['/contact']" class="about-btn">
             <img src="assets/images/icon.svg" alt="Button" />
           </a>
         </div>

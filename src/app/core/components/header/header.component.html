@@ -1,5 +1,3 @@
-  <!-- Header -->
-
 <header class="header-area">
   <div class="container">
     <div class="gx-row d-flex align-items-center justify-content-between">
@@ -7,7 +5,7 @@
         <img src="assets/images/logo.svg" alt="Logo">
       </a>
 
-      <nav class="navbar">
+      <nav class="navbar" [ngClass]="{'active': navbarActive}">
         <ul class="menu">
           <li [ngClass]="{ 'active': isActive('home') }"><a routerLink="/">Home</a></li>
           <li [ngClass]="{ 'active': isActive('about') }"><a routerLink="/about">About</a></li>
@@ -18,13 +16,11 @@
         <a routerLink="/contact" class="theme-btn">Let's talk</a>
       </nav>
 
-      <a href="/contact" class="theme-btn">Let's talk</a>
-
-            <div class="show-menu">
-                <span></span>
-                <span></span>
-                <span></span>
-            </div>
+      <div class="show-menu" (click)="toggleNavbar()">
+        <span></span>
+        <span></span>
+        <span></span>
+      </div>
     </div>
   </div>
 </header>

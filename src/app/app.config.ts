@@ -1,4 +1,4 @@
-import { ApplicationConfig, importProvidersFrom } from '@angular/core';
+import { ApplicationConfig, importProvidersFrom, isDevMode } from '@angular/core';
 import { provideRouter } from '@angular/router';
 
 import { routes } from './app.routes';
@@ -14,6 +14,8 @@ import {
 } from '@angular/common/http';
 import { LoggerModule, NgxLoggerLevel } from 'ngx-logger';
 import { loggerInterceptor } from './core/interceptors/logger.interceptor';
+import { TranslocoHttpLoader } from './transloco-loader';
+import { provideTransloco } from '@ngneat/transloco';
 
 export const appConfig: ApplicationConfig = {
   providers: [
@@ -33,6 +35,15 @@ export const appConfig: ApplicationConfig = {
         level: NgxLoggerLevel.DEBUG,
         serverLogLevel: NgxLoggerLevel.ERROR,
       })
-    ),
+    ), provideHttpClient(), provideTransloco({
+        config: { 
+          availableLangs: ['en', 'ar', 'hi', 'ml', 'es'],
+          defaultLang: 'en',
+          // Remove this option if your application doesn't support changing language in runtime.
+          reRenderOnLangChange: true,
+          prodMode: !isDevMode(),
+        },
+        loader: TranslocoHttpLoader
+      }),
   ],
 };

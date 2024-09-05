@@ -10,7 +10,7 @@ import { Router, RouterLink } from '@angular/router';
 })
 export class HeaderComponent {
   isMenuOpen = false;
-
+  navbarActive: boolean = false;
   constructor(private router: Router) {}
 
   toggleMenu() {
@@ -19,5 +19,8 @@ export class HeaderComponent {
 
   isActive(route: string): boolean {
     return this.router.url.includes(route);
+  }
+  toggleNavbar() {
+    this.navbarActive = !this.navbarActive;
   }
 }
