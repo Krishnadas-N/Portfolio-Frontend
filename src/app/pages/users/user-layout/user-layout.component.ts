@@ -1,4 +1,4 @@
-import { Component, OnInit, AfterViewInit, OnDestroy, Inject, PLATFORM_ID } from '@angular/core';
+import { Component, OnInit, AfterViewInit, OnDestroy, Inject, PLATFORM_ID, ChangeDetectionStrategy } from '@angular/core';
 import { isPlatformBrowser } from '@angular/common';
 import { Router, NavigationEnd, NavigationStart, NavigationCancel, NavigationError, RouterOutlet } from '@angular/router';
 import { ScriptService } from '../../../core/services/script.service';
@@ -8,13 +8,16 @@ import { LoaderComponent } from '../../../core/components/loader/loader.componen
 import { LoaderService } from '../../../core/services/loader.service';
 import * as AOS from 'aos';
 import { Subscription } from 'rxjs';
+import { FloatingPopupComponent } from '../../../shared/components/floating-popup/floating-popup.component';
+import { NgIconComponent } from '@ng-icons/core';
 @Component({
   selector: 'app-home',
   standalone: true,
-  imports: [HeaderComponent, FooterComponent, RouterOutlet, LoaderComponent],
+  imports: [HeaderComponent, FooterComponent, RouterOutlet, LoaderComponent,FloatingPopupComponent],
   templateUrl: './user-layout.component.html',
   styleUrl: './user-layout.component.scss',
   providers: [ScriptService],
+  changeDetection:ChangeDetectionStrategy.OnPush
 })
 export class UserLayoutComponent implements  OnInit, AfterViewInit, OnDestroy {
   constructor(

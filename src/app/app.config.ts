@@ -1,6 +1,6 @@
-import { ApplicationConfig, importProvidersFrom, isDevMode } from '@angular/core';
-import { provideRouter } from '@angular/router';
 
+import { ApplicationConfig, importProvidersFrom, isDevMode } from '@angular/core';
+import { provideRouter, withInMemoryScrolling } from '@angular/router';
 import { routes } from './app.routes';
 import {
   provideClientHydration,
@@ -16,10 +16,14 @@ import { LoggerModule, NgxLoggerLevel } from 'ngx-logger';
 import { loggerInterceptor } from './core/interceptors/logger.interceptor';
 import { TranslocoHttpLoader } from './transloco-loader';
 import { provideTransloco } from '@ngneat/transloco';
+import { HashLocationStrategy, LocationStrategy } from '@angular/common';
 
 export const appConfig: ApplicationConfig = {
   providers: [
-    provideRouter(routes),
+    provideRouter(routes,
+      withInMemoryScrolling({ scrollPositionRestoration: 'top' })
+    ),
+    { provide: LocationStrategy, useClass: HashLocationStrategy },
     provideClientHydration(
       // withEventReplay(),
       withHttpTransferCacheOptions({
@@ -36,10 +40,10 @@ export const appConfig: ApplicationConfig = {
         serverLogLevel: NgxLoggerLevel.ERROR,
       })
     ), provideHttpClient(), provideTransloco({
-        config: { 
+        config: {
           availableLangs: ['en', 'ar', 'hi', 'ml', 'es'],
           defaultLang: 'en',
-          // Remove this option if your application doesn't support changing language in runtime.
+          // Remove this option if {application}  doesn't support changing language in runtime.
           reRenderOnLangChange: true,
           prodMode: !isDevMode(),
         },
@@ -47,3 +51,7 @@ export const appConfig: ApplicationConfig = {
       }),
   ],
 };
+// function withEventReplay(): import("@angular/platform-browser").HydrationFeature<import("@angular/platform-browser").HydrationFeatureKind> {
+//   throw new Error('Function not implemented.');
+// }
+

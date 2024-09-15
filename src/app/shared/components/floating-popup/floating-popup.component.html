@@ -1,0 +1,15 @@
+<div class="popup-wrapper">
+  <button class="popup-button" (click)="togglePopup()">&#43;</button>
+  <div class="popup-menu" [ngClass]="{ visible: isPopupVisible }">
+    <ng-container *ngIf="selectedOption; else menuTemplate">
+      <div class="back-button" (click)="goBackToMenu()">
+        <ng-icon class="icon" name="heroBackwardMini"></ng-icon> Back to Options
+      </div>
+      <ng-container #ContainerOptionComponent></ng-container>
+    </ng-container>
+    <ng-template #menuTemplate>
+      <app-popup-menu (optionSelected)="changeOptions($event)"></app-popup-menu>
+    </ng-template>
+  </div>
+</div>
+

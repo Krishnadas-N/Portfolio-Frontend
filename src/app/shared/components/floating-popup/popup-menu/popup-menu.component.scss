@@ -1,0 +1,32 @@
+ul {
+    padding: 0;
+    margin: 0;
+    width: 100%;
+
+    li {
+      padding: 15px 20px;
+      margin-bottom: 10px;
+      background: linear-gradient(135deg, #0f0d23, #2a2a72);
+      color: #ffffff;
+      border-radius: 8px;
+      text-align: center;
+      cursor: pointer;
+      font-size: 16px;
+      transition: background 0.3s ease, transform 0.2s ease;
+
+      .icon {
+        margin-right: 2px;
+        font-size: 20px;
+      }
+
+      &:hover {
+        background: linear-gradient(135deg, #ff6b6b, #ffcc00);
+        transform: translateY(-4px);
+      }
+
+      &:last-child {
+        margin-bottom: 0;
+      }
+    }
+  }
+
