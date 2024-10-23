@@ -57,9 +57,9 @@
     background-color: rgba(255, 255, 255, 0.98);
     border-radius: 12px;
     box-shadow: 0 8px 15px rgba(0, 0, 0, 0.15);
-    padding: 15px;
+    padding: 10px;
     list-style: none;
-    width: 240px;
+    min-width: 240px;
     opacity: 0;
     transform: translateY(20px) scale(0.95); // Initial scale for smooth pop effect
     pointer-events: none;
@@ -76,10 +76,11 @@
       color: #3498db;
       cursor: pointer;
       margin-bottom: 10px;
-      display: inline-flex; /* Use inline-flex to align icon and text */
-      align-items: center; /* Vertically align the icon and text */
+      display: inline-flex;
+      justify-content: start;
+      align-items: start;
       transition: color 0.3s ease;
-
+       text-align: start;
       &:hover {
         color: #2980b9;
       }

@@ -1,13 +1,12 @@
-import { Injectable, Renderer2 } from '@angular/core';
+import { inject, Injectable, Renderer2 } from '@angular/core';
 import { ScriptStore, StyleStore } from '../models/script.store';
-
-declare var document: any;
+import { DOCUMENT } from '@angular/common';
 
 @Injectable()
 export class ScriptService {
   private scripts: any = {};
   private styles: any = {};
-
+  private readonly document = inject(DOCUMENT);
   constructor(private renderer: Renderer2) {
     ScriptStore.forEach((script: any) => {
       this.scripts[script.name] = {
@@ -50,7 +49,7 @@ export class ScriptService {
         };
         script.onerror = (error: any) =>
           reject({ script: name, loaded: false, status: 'Load Failed' });
-        this.renderer.appendChild(document.body, script);
+        this.renderer.appendChild(this.document?.body, script);
       }
     });
   }
@@ -62,7 +61,7 @@ export class ScriptService {
     const link = this.renderer.createElement('link');
     link.rel = 'stylesheet';
     link.href = this.styles[name].href;
-    this.renderer.appendChild(document.head, link);
+    this.renderer.appendChild(this.document?.head, link);
     this.styles[name].loaded = true;
   }
 }

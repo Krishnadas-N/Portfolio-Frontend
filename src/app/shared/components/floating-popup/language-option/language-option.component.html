@@ -1,1 +1,10 @@
-<p>language-option works!</p>
+<div class="language-menu">
+  <ul>
+   @for (language of languages; track $index) {
+    <li (click)="selectLanguage(language.code)">
+      <img [src]="language.flag" alt="{{ language.name }} Flag" class="flag-icon">
+      <span>{{ language.name }}</span>
+    </li>
+  }
+  </ul>
+</div>

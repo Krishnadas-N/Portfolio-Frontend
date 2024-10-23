@@ -31,7 +31,8 @@
             ],
             "styles": [
               "node_modules/aos/dist/aos.css",
-              "src/styles.scss"
+              "src/styles.scss",
+              "src/assets/css/style.css"
             ],
             "scripts": [
                 "node_modules/aos/dist/aos.js",
@@ -106,7 +107,8 @@
             ],
             "styles": [
               "node_modules/aos/dist/aos.css",
-              "src/styles.scss"
+              "src/styles.scss",
+              "src/assets/css/style.css"
 
             ],
             "scripts": [

@@ -7,9 +7,7 @@ import {
   ViewContainerRef,
 } from '@angular/core';
 import { NgIconComponent, provideIcons } from '@ng-icons/core';
-import {
-  heroBackwardMini,
-} from '@ng-icons/heroicons/mini';
+import { heroBackwardMini } from '@ng-icons/heroicons/mini';
 import { TranslocoModule } from '@ngneat/transloco';
 import { PopupMenuComponent } from './popup-menu/popup-menu.component';
 
@@ -27,7 +25,7 @@ import { PopupMenuComponent } from './popup-menu/popup-menu.component';
   styleUrl: './floating-popup.component.scss',
   providers: [
     provideIcons({
-      heroBackwardMini
+      heroBackwardMini,
     }),
   ],
 })
@@ -49,7 +47,7 @@ export class FloatingPopupComponent {
   async changeOptions(option: string) {
     if (this.options.includes(option)) {
       this.containerOptionComponent?.clear();
-      this.selectedOption=option;
+      this.selectedOption = option;
       switch (option) {
         case this.options[0]:
           const { ChatOptionComponent } = await import(
@@ -57,13 +55,23 @@ export class FloatingPopupComponent {
           );
           this.containerOptionComponent.createComponent(ChatOptionComponent);
           break;
+        case this.options[1]:
+          const { LiveChatComponent } = await import(
+            './live-chat/live-chat.component'
+          );
+          this.containerOptionComponent.createComponent(LiveChatComponent);
+          break;
         case this.options[2]:
-          const {LanguageOptionComponent  } = await import(
+          const { LanguageOptionComponent } = await import(
             './language-option/language-option.component'
           );
-          this.containerOptionComponent.createComponent(LanguageOptionComponent);
+          this.containerOptionComponent.createComponent(
+            LanguageOptionComponent
+          );
           break;
-         default:
+        case this.options[3]:
+          break;
+        default:
           console.error('Unknown option selected');
       }
       this.cdr.detectChanges();
